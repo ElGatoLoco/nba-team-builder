@@ -1,0 +1,51 @@
+{
+  "license": "CC BY-SA 4.0",
+  "version": "0.0.1",
+  "private": true,
+  "name": "nba-team-builder",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"cd packages/client && yarn dev\" \"cd packages/server && yarn dev\"",
+    "lint:client": "yarn workspace client lint",
+    "lint:server": "yarn workspace server lint",
+    "build:client": "yarn workspace client build",
+    "build:server": "yarn workspace server build",
+    "build": "concurrently \"yarn build:client\" \"yarn build:server\"",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "@trpc/server": "^10.25.0",
+    "zod": "^3.21.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.1.0",
+    "@typescript-eslint/eslint-plugin": "^5.59.0",
+    "@typescript-eslint/parser": "^5.59.0",
+    "concurrently": "^7.6.0",
+    "eslint": "^8.38.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^8.0.3",
+    "import-sort-style-module": "^6.0.0",
+    "lint-staged": "^13.2.1",
+    "prettier": "^2.8.7",
+    "prettier-plugin-import-sort": "^0.0.7",
+    "typescript": "^4.9.3"
+  },
+  "lint-staged": {
+    "./**/*.{ts,tsx}": [
+      "yarn lint:client",
+      "yarn lint:server"
+    ]
+  },
+  "importSort": {
+    ".ts, .tsx": {
+      "style": "module",
+      "parser": "typescript"
+    }
+  }
+}
